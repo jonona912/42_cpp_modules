@@ -1,0 +1,10 @@
+The quick brown fox jumps over the lazy dog.
+Programming in C++ is both challenging and rewarding.
+Replace this phrase with something else if your program works correctly.
+This sentence contains the word replace multiple times, so replace should be replaced by replace.
+42 is the answer to life, the universe, and everything.
+Special characters like * & % $ # @ ! should also be handled properly.
+Testing with empty lines:
+
+Testing with repeated words: test test test test test.
+End of test file.
