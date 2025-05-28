@@ -1,65 +1,113 @@
 #include "Character.hpp"
 
-Character::Character(std::string name) : _name(name) {
-	for (int i = 0; i < 4; ++i)
-		_inventory[i] = NULL;
+#include <iostream>
+
+Character::Character() : _name("Default") {
+	for (int i = 0; i < 4; i++) {
+		this->_inventory[i] = NULL;
+	}
+	// std::cout << "Default Character constructor called" << std::endl;
 }
 
-Character::Character(const Character &src) : _name(src._name) {
-	for (int i = 0; i < 4; ++i) {
-		if (src._inventory[i])
-			_inventory[i] = src._inventory[i]->clone();
-		else
-			_inventory[i] = NULL;
+Character::Character(std::string const &name) : _name(name) {
+	for (int i = 0; i < 4; i++) {
+		this->_inventory[i] = NULL;
 	}
-}
-
-Character& Character::operator=(const Character &rhs) {
-	if (this != &rhs) {
-		_name = rhs._name;
-		for (int i = 0; i < 4; ++i) {
-			delete _inventory[i];
-			if (rhs._inventory[i])
-				_inventory[i] = rhs._inventory[i]->clone();
-			else
-				_inventory[i] = NULL;
-		}
-	}
-	return *this;
+	// std::cout << "Character Constructor called" << std::endl;
 }
 
 Character::~Character() {
-	for (int i = 0; i < 4; ++i) {
-		delete _inventory[i];
-	}
+	for (int i = 0; i < 4; i++) {
+        delete _inventory[i];
+    }
+	// std::cout << "Character Destructor called" << std::endl;
 }
 
-std::string const& Character::getName() const {
-	return _name;
+Character::Character(Character const &src) : _name(src._name) {
+    // Initialize inventory to NULL first
+    for (int i = 0; i < 4; i++) {
+        _inventory[i] = NULL;
+    }
+    
+    // Deep copy using clone
+    for (int i = 0; i < 4; i++) {
+        if (src._inventory[i] != NULL) {
+            _inventory[i] = src._inventory[i]->clone();
+        }
+    }
+    // std::cout << "Character Copy Constructor called" << std::endl;
+}
+
+Character& Character::operator=(Character const &rhs) {
+    if (this != &rhs) {
+        _name = rhs._name;
+        
+        // Clean up existing inventory
+        for (int i = 0; i < 4; i++) {
+            delete _inventory[i];
+            _inventory[i] = NULL;
+        }
+        
+        // Deep copy using clone
+        for (int i = 0; i < 4; i++) {
+            if (rhs._inventory[i] != NULL) {
+                _inventory[i] = rhs._inventory[i]->clone();
+            }
+        }
+    }
+    // std::cout << "Character Assignment Operator called" << std::endl;
+    return *this;
+}
+
+std::string const &Character::getName() const {
+	return this->_name;
 }
 
 void Character::equip(AMateria* m) {
-	for (int i = 0; i < 4; ++i) {
-		if (!_inventory[i]) {
-			_inventory[i] = m;
+	if (!m) {
+		std::cout << "No mataria given" << std::endl;
+		return;
+	}
+	for (int i = 0; i < 4; i++) {
+		if (this->_inventory[i] == NULL) {
+			this->_inventory[i] = m;
+			// std::cout << "Equiped materia " << m->getType() << " at index " << i << std::endl;
 			return;
 		}
 	}
-	std::cout << "Inventory is full, cannot equip " << m->getType() << std::endl;
+	std::cout << "Inventory full" << std::endl;
 }
+
 
 void Character::unequip(int idx) {
-	if (idx < 0 || idx >= 4 || !_inventory[idx]) {
-		std::cout << "Invalid index or no materia to unequip at index " << idx << std::endl;
+	if (idx < 0 || idx >= 4) {
+		std::cout << "Index out of range" << std::endl;
 		return;
 	}
-	_inventory[idx] = NULL;
+	if (this->_inventory[idx]) {
+		// std::cout << "Uniquiped inventory: " << this->_inventory[idx]->getType() << std::endl;
+		this->_inventory[idx] = NULL;
+		return;
+	}
+	std::cout << "Nothing to unequip" << std::endl;
 }
 
-void Character::use(int idx, ICharacter& target) {
-	if (idx < 0 || idx >= 4 || !_inventory[idx]) {
-		std::cout << "Invalid index or no materia to use at index " << idx << std::endl;
+void Character::use(int idx, ICharacter &target) {
+	if (idx < 0 || idx >= 4) {
+		std::cout << "Inventory index out of range" << std::endl;
 		return;
 	}
-	_inventory[idx]->use(target);
+	if (this->_inventory[idx])
+		this->_inventory[idx]->use(target);
+	else
+		std::cout << "No Weapon to use" << std::endl;
+	// this->_inventory[idx].use(target);
+}
+
+AMateria* Character::getMateriaAddress(int idx) {
+	if (idx < 0 || idx >= 4) {
+		std::cout << "Index out of range" << std::endl;
+		return NULL;
+	}
+	return this->_inventory[idx];
 }

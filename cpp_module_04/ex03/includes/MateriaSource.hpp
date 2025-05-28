@@ -1,28 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: zkhojazo <zkhojazo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 20:14:10 by zkhojazo          #+#    #+#             */
-/*   Updated: 2025/05/26 20:14:20 by zkhojazo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#ifndef MATERIA_SOURCE_HPP
+#define MATERIA_SOURCE_HPP
 
-#ifndef MATERIASOURCE_HPP
-#define MATERIASOURCE_HPP
-
+#include "AMateria.hpp"
 #include "IMateriaSource.hpp"
+#include <string>
 
 class MateriaSource : public IMateriaSource {
 private:
-	AMateria* _materias[4];
+	AMateria *_learnedMaterias[4];
 public:
 	MateriaSource();
-	MateriaSource(const MateriaSource &src);
-	MateriaSource& operator=(const MateriaSource &rhs);
 	~MateriaSource();
+	MateriaSource(MateriaSource const &src);
+	MateriaSource& operator=(MateriaSource const &rhs);
 
 	void learnMateria(AMateria* m);
 	AMateria* createMateria(std::string const & type);

@@ -1,61 +1,50 @@
 #include "MateriaSource.hpp"
+
 #include <iostream>
 
 MateriaSource::MateriaSource() {
-	for (int i = 0; i < 4; ++i)
-		_materias[i] = NULL;
-}
-
-MateriaSource::MateriaSource(const MateriaSource &src) {
-	for (int i = 0; i < 4; ++i) {
-		if (src._materias[i])
-			_materias[i] = src._materias[i]->clone();
-		else
-			_materias[i] = NULL;
+	for (int i = 0; i < 4; i++) {
+		this->_learnedMaterias[i] = NULL;
 	}
-}
-
-MateriaSource& MateriaSource::operator=(const MateriaSource &rhs) {
-	if (this != &rhs) {
-		for (int i = 0; i < 4; ++i) {
-			delete _materias[i];
-			if (rhs._materias[i])
-				_materias[i] = rhs._materias[i]->clone();
-			else
-				_materias[i] = NULL;
-		}
-	}
-	return *this;
+	// std::cout << "MateriaSource Default Constructor Called" << std::endl;
 }
 
 MateriaSource::~MateriaSource() {
-	for (int i = 0; i < 4; ++i) {
-		delete _materias[i];
+	for (int i = 0; i < 4; i++) {
+		delete this->_learnedMaterias[i];
 	}
+}
+
+MateriaSource::MateriaSource(MateriaSource const &src) {
+	for (int i = 0; i < 4; i++) {
+		this->_learnedMaterias[i] = src._learnedMaterias[i];
+	}
+	// std::cout << "MateriaSource Copy Constructor called" << std::endl;
 }
 
 void MateriaSource::learnMateria(AMateria* m) {
 	if (!m) {
-		std::cout << "Cannot learn a null materia." << std::endl;
+		std::cout << "Invalid materia. Cannot learn" << std::endl;
 		return;
 	}
-	for (int i = 0; i < 4; ++i) {
-		if (!_materias[i]) {
-			_materias[i] = m;
-			std::cout << "Learned materia: " << m->getType() << " at index " << i << std::endl;
+	for (int i = 0; i < 4; i++) {
+		if (this->_learnedMaterias[i] == NULL) {
+			this->_learnedMaterias[i] = m;
+			// std::cout << "Materia Learned " << m->getType() << std::endl;
 			return;
 		}
 	}
-	std::cout << "Materia source is full, cannot learn " << m->getType() << std::endl;
+	std::cout << "Memory full" << std::endl;
 }
 
 AMateria* MateriaSource::createMateria(std::string const &type) {
-	for (int i = 0; i < 4; ++i) {
-		if (_materias[i] && _materias[i]->getType() == type) {
-			std::cout << "Creating materia: " << type << " at index " << i << std::endl;
-			return _materias[i]->clone();
+	for (int i = 0; i < 4; i++) {
+		if (this->_learnedMaterias[i] && this->_learnedMaterias[i]->getType() == type) {
+			// std::cout << "Cloned materia: " << _learnedMaterias[i]->getType() << std::endl;
+			return _learnedMaterias[i]->clone();
 		}
 	}
-	std::cout << "Materia of type " << type << " not found." << std::endl;
+	std::cout << "Did not find matching materia in memmory for: " << type << std::endl;
 	return NULL;
 }
+

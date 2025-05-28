@@ -6,7 +6,7 @@
 #    By: zkhojazo <zkhojazo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/26 08:55:04 by zkhojazo          #+#    #+#              #
-#    Updated: 2025/05/26 12:11:55 by zkhojazo         ###   ########.fr        #
+#    Updated: 2025/05/27 21:25:21 by zkhojazo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,9 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 	@echo "$(NAME) compiled successfully!"
+
+make valgrind: all
+	valgrind -s --leak-check=full --track-origins=yes ./$(NAME)
 
 clean:
 	$(RM) -r $(OBJ_DIR)
