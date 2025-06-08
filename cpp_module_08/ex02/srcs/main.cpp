@@ -6,7 +6,7 @@
 /*   By: zkhojazo <zkhojazo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 20:33:07 by zkhojazo          #+#    #+#             */
-/*   Updated: 2025/06/03 07:21:28 by zkhojazo         ###   ########.fr       */
+/*   Updated: 2025/06/08 11:55:12 by zkhojazo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void listDemo() {
 	
 	++it;
 	--it;
+	*it = 42; // Modify the first element
 	
 	std::cout << "Elements:" << std::endl;
 	while (it != ite) {
@@ -78,7 +79,9 @@ void listDemo() {
 
 
 int main(void) {
+	std::cout << "\033[33mSubject Test\033[0m" << std::endl;
 	subjectDemo();
+	std::cout << "\033[33mList Test\033[0m" << std::endl;
 	listDemo();
 	// MutantStack<int> s;
 	// s.push(1);
@@ -96,5 +99,3 @@ int main(void) {
 	// MutantStack<int>::iterator it = s.begin();
 	return 0;
 }
-
-

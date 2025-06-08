@@ -6,7 +6,7 @@
 /*   By: zkhojazo <zkhojazo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 12:03:24 by zkhojazo          #+#    #+#             */
-/*   Updated: 2025/06/01 14:19:46 by zkhojazo         ###   ########.fr       */
+/*   Updated: 2025/06/07 21:30:00 by zkhojazo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void outOfBoundsExceptions() {
 		intArr[-1];
 	}
 	catch (std::exception &e) {
-		std::cout << "Expected exception: " << e.what() << std::endl;
+		std::cout << "Expected exception_last: " << e.what() << std::endl;
 	}
 }
 
@@ -83,8 +83,13 @@ int main(void) {
 	numbers[0] = 42;
 	// This calls the function with a const reference
 	printFirstElement(numbers);
+	numbers[0] = 100;
+	printFirstElement(numbers);
+	const Array<int> constNumbers(3);
+	std::cout << "Const array first element: " << constNumbers[0] << std::endl;
+	// constNumbers[0] = 200;
 	// createStringArr();
-	// outOfBoundsExceptions();
+	outOfBoundsExceptions();
 	// constSubsriptOperator();
 	return 0;
 }

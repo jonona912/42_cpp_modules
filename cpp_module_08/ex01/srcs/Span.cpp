@@ -6,7 +6,7 @@
 /*   By: zkhojazo <zkhojazo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 13:40:30 by zkhojazo          #+#    #+#             */
-/*   Updated: 2025/06/02 21:06:42 by zkhojazo         ###   ########.fr       */
+/*   Updated: 2025/06/08 11:42:26 by zkhojazo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ unsigned int Span::longestSpan() {
 }
 
 unsigned int Span::shortestSpan() {
-	if (this->_numArr.size() <= 1) { // maybe a check function???
-		// std::cout << "exception: not enough numbers in the set" << std::endl;
+	if (this->_numArr.size() <= 1) {
 		throw SpanException("Not enough data");
 		return -1;
 	}
@@ -70,7 +69,6 @@ unsigned int Span::shortestSpan() {
             minSpan = currentSpan;
         }
     }
-    
     return minSpan;
 }
 

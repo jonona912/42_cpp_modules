@@ -6,7 +6,7 @@
 /*   By: zkhojazo <zkhojazo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 08:10:15 by zkhojazo          #+#    #+#             */
-/*   Updated: 2025/06/02 20:21:15 by zkhojazo         ###   ########.fr       */
+/*   Updated: 2025/06/08 11:44:24 by zkhojazo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,13 @@ void testRangeInsertion() {
 }
 
 int main(void) {
+	std::cout << "\033[33mSubject demo:\033[0m" << std::endl;
 	subjectDemo();
+	std::cout << "\033[33mExceptions demo:\033[0m" << std::endl;
+	exceptionsDemo();
+	std::cout << "\033[33mBig data loop demo:\033[0m" << std::endl;
 	testBigDataLoop();
+	std::cout << "\033[33mRange insertion demo:\033[0m" << std::endl;
 	testRangeInsertion();
 	return 0;
 }
