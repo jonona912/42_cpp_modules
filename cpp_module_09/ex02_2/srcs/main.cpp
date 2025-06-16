@@ -6,7 +6,7 @@
 /*   By: zkhojazo <zkhojazo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:49:22 by zkhojazo          #+#    #+#             */
-/*   Updated: 2025/06/04 21:32:18 by zkhojazo         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:04:37 by zkhojazo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int ac, char *av[]) {
 		PmergeMe pmerge(ac, av);
 		pmerge.sortAndMeasure();
 	} catch (const std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 		return 1;
 	}
 	return 0;

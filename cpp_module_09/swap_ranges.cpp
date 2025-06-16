@@ -18,7 +18,7 @@ int main() {
     std::cout << "vec size: " << vec.size() << " zec size: " << zec.size() << std::endl;
     // Swap range [0,2) with range starting at index 3
     // swap_ranges(vec.begin(), vec.begin() + 2, vec.begin() + 2);
-    
+
     // Print result
     for (int x : vec) {
         std::cout << x << " "; // Output: 4 5 3 1 2 6
