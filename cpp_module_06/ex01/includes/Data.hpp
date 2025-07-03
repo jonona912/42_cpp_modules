@@ -6,7 +6,7 @@
 /*   By: zkhojazo <zkhojazo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:02:18 by zkhojazo          #+#    #+#             */
-/*   Updated: 2025/05/31 17:26:12 by zkhojazo         ###   ########.fr       */
+/*   Updated: 2025/06/07 12:15:05 by zkhojazo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class Data {
 public:
 	Data();
 	~Data();
-	Data(std::string testStr);
+	Data(std::string const &testStr);
 	Data(const Data &other);
 	Data &operator=(const Data &other);
 	std::string getTestStr() const;

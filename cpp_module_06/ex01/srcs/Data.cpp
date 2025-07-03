@@ -2,7 +2,7 @@
 
 Data::Data() : _testStr("default") {}
 
-Data::Data(std::string testStr) : _testStr(testStr) {}
+Data::Data(std::string const &testStr) : _testStr(testStr) {}
 
 Data::~Data() {}
 

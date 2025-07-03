@@ -6,7 +6,7 @@
 /*   By: zkhojazo <zkhojazo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 15:36:37 by zkhojazo          #+#    #+#             */
-/*   Updated: 2025/05/31 16:34:54 by zkhojazo         ###   ########.fr       */
+/*   Updated: 2025/06/07 12:10:25 by zkhojazo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@ ScalarConverter::ScalarConverter() {}
 ScalarConverter::ScalarConverter(const ScalarConverter&) {}
 
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter&) {
-
 	return *this;
 }
 
 ScalarConverter::~ScalarConverter() {}
-
 
 void ScalarConverter::convert(std::string const &str) {
 	str_type type = getType(str);
