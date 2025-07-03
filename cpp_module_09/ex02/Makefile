@@ -6,13 +6,13 @@
 #    By: zkhojazo <zkhojazo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/26 08:55:04 by zkhojazo          #+#    #+#              #
-#    Updated: 2025/06/04 13:01:36 by zkhojazo         ###   ########.fr        #
+#    Updated: 2025/06/16 12:44:18 by zkhojazo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= PmergeMe
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS	= -Wall -Wextra -Werror -g -std=c++98
 RM			= rm -f
 
 SRC_DIR		= srcs

@@ -6,7 +6,7 @@
 /*   By: zkhojazo <zkhojazo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 07:32:03 by zkhojazo          #+#    #+#             */
-/*   Updated: 2025/06/08 10:28:28 by zkhojazo         ###   ########.fr       */
+/*   Updated: 2025/06/17 08:33:12 by zkhojazo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ void BitcoinExchange::loadBtcRates(const std::string& filename) {
 		else {
 			throw std::runtime_error("No rate provided for date: " + date);
 		}
+		if (this->_btcRates.find(date) != _btcRates.end()) {
+			throw std::runtime_error("Double date detected: " + date);
+		}
 		this->_btcRates.insert(this->_btcRates.end(), std::make_pair(date, rate));
 	}
 }
@@ -144,10 +147,22 @@ void BitcoinExchange::loadData(const std::string& filename) {
 				continue;
 			}
 		}
-		result = rate * this->_btcRates.at(date);
-	
-		this->_data.insert(this->_data.end(), std::make_pair(date, rate));
-		std::cout << date << " => " << rate << " => " << result << std::endl;
+		try {
+			result = rate * this->_btcRates.at(date);
+			this->_data.insert(this->_data.end(), std::make_pair(date, rate));
+			std::cout << date << " => " << rate << " => " << result << std::endl;
+		}
+		catch (const std::exception& e) {
+			std::map<std::string, float>::const_iterator it = _btcRates.lower_bound(date);
+			if (it == _btcRates.end()) {
+				--it;
+			} else if (it->first != date && it != _btcRates.begin()) {
+				--it;
+			}
+			result = rate * it->second;
+			this->_data.insert(this->_data.end(), std::make_pair(date, rate));
+			std::cout << date << " => " << rate << " => " << result << std::endl;
+		}
 	}
 	file.close();
 }

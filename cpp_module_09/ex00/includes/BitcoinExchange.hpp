@@ -6,7 +6,7 @@
 /*   By: zkhojazo <zkhojazo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 07:23:15 by zkhojazo          #+#    #+#             */
-/*   Updated: 2025/06/07 21:51:55 by zkhojazo         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:13:30 by zkhojazo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ private:
 	void	printMap() const;
 	// float	getExchangeRate(const std::string& date) const;
 	bool	validateDate(const std::string& date) const;
-	bool isLeapYear(int year) const;
-	bool isValidDate(int day, int month, int year) const;
+	bool	isLeapYear(int year) const;
+	bool	isValidDate(int day, int month, int year) const;
 	// bool	validateRate(const std::string& rateStr) const;
 	// void	printExchangeRate(const std::string& date, float amount) const;
 	void	printError(const std::string& message) const;
@@ -37,5 +37,5 @@ public:
 	~BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange& other);
 	BitcoinExchange& operator=(const BitcoinExchange& other);
-	void	printExchangeRates();
+	// void	printExchangeRates();
 };
